@@ -14,6 +14,7 @@ describe('Coin API Success Cases', () => {
         const checkCoinMessage1 = coinModule.checkCoinAmount(1);
         const checkCoinMessage2 = coinModule.checkCoinAmount(2);
         const checkCoinMessage5 = coinModule.checkCoinAmount(5);
+        console.log(checkCoinMessage1)
         expect(checkCoinMessage1.data).toBe(3);
         expect(checkCoinMessage2.data).toBe(2);
         expect(checkCoinMessage5.data).toBe(1);

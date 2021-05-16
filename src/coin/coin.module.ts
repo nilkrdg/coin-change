@@ -10,6 +10,10 @@ export class CoinModule {
      * @returns CoinResponse - Message indicates the operation is successful.
      */
     public initialiseMachine(coins: Coin[]): CoinResponse {
+        const validationResult = this.validateCoins(coins);
+        if(validationResult.result === ResultEnum.Error) {
+            return validationResult;
+        }
         this.insertCoins(coins);
         return {
             result: ResultEnum.Success
@@ -34,6 +38,10 @@ export class CoinModule {
      * @returns CoinResponse - Message indicates the operation is successful.
      */
     public registerUserCoins(coins: Coin[]): CoinResponse {
+        const validationResult = this.validateCoins(coins);
+        if(validationResult.result === ResultEnum.Error) {
+            return validationResult;
+        }
         const userCoins = this.insertCoins(coins);
         for (const coin of userCoins) {
             const addedCoin = this.userCoins.find((c) => c.type === coin.type);
@@ -66,6 +74,10 @@ export class CoinModule {
      * @returns CoinResponse - Message indicates the operation is successful or not and the change as a list of coins.
      */
     public buy(productPrice: number): CoinResponse {
+        const validationResult = this.validateAmount(productPrice);
+        if(validationResult.result === ResultEnum.Error) {
+            return validationResult;
+        }
         const userCoinSum = this.getCoinSum(this.userCoins);
         if (this.userCoins.length === 0 || userCoinSum < productPrice) {
             return {
@@ -183,10 +195,33 @@ export class CoinModule {
     }
 
     private validateCoins(coins: Coin[]): CoinResponse {
+        for (const coin of coins) {
+            if(!this.validateValue(coin.type) || !this.validateValue(coin.amount)) {
+                return {
+                    result: ResultEnum.Error,
+                    message: 'Invalid coin!',
+                };
+            }
+        }
         return {
-            result: ResultEnum.Error,
-            message: 'Not enough coin to purchase!',
-            data: this.returnUserCoins()
+            result: ResultEnum.Success,
         };
+    }
+
+    private validateAmount(amount: number): CoinResponse {
+            if(!this.validateValue(amount)) {
+                return {
+                    result: ResultEnum.Error,
+                    message: 'Invalid coin!',
+                };
+            }
+
+        return {
+            result: ResultEnum.Success,
+        };
+    }
+
+    private validateValue(value: number): boolean {
+        return !(isNaN(value) || value < 0 || value === 0);
     }
 }

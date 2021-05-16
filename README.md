@@ -202,5 +202,4 @@ npm test
 ## Further Work
 
 * There is need to add tests for CLI and Parser modules.
-* Adding coin type checks into Coin API.
 * More cases should be covered by Coin Module tests.
