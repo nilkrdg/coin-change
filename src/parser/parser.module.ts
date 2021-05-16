@@ -64,7 +64,7 @@ export class Parser {
         if (argumentDefinition.type === 'numberArray') {
             const values = argumentWord.split(',').map((w) => {
                 const value = parseInt(w, 10);
-                if (isNaN(value) || value < 0) {
+                if (isNaN(value) || value < 0 || value === 0) {
                     throw new Error(`Invalid argument type ${argumentWord} for command ${commandName} argument ${argumentDefinition.name}!`);
                 }
                 return value;
@@ -72,7 +72,7 @@ export class Parser {
             return values;
         } else if (argumentDefinition.type === 'number') {
             const value = parseInt(argumentWord, 10);
-            if (isNaN(value) || value < 0) {
+            if (isNaN(value) || value < 0 || value === 0) {
                 throw new Error(`Invalid argument type ${argumentWord} for command ${commandName} argument ${argumentDefinition.name}!`);
             }
             return value;
