@@ -65,13 +65,13 @@ The project works on Node version 12.x and greater. Before installation make sur
 
 Run the following commands to install the project and start the Coin CLI.
 ```bash
-$ git clone https://github.com/nilkrdg/coin-change.git
+git clone https://github.com/nilkrdg/coin-change.git
 
-$ cd coin-change
+cd coin-change
 
-$ npm install 
+npm install 
 
-$ npm start
+npm start
 ```
 ## Usage
 
@@ -79,29 +79,29 @@ The project includes an interactive test harness (CLI).
 
 You can list all CLI commands.
 ```bash
-$ help
+help
 ```
 You can list details of a CLI command.
 ```bash
-$ help init
+help init
 ```
 
 To initialise the machine,
 ```bash
-$ init --coin-types 1,2,5 --coin-amounts 2,4,2
+init --coin-types 1,2,5 --coin-amounts 2,4,2
 ```
-To initialise the machine with short arguments form,
+To initialise the machine with short form,
 ```bash
-$ init -ct 1,2,5 --ca 2,4,2
+init -ct 1,2,5 --ca 2,4,2
 ```
 
 To insert coins into the machine,
 ```bash
-$ insert --coin-types 1,2,5 --coin-amounts 2,4,2
+insert --coin-types 1,2,5 --coin-amounts 2,4,2
 ```
-To insert coins into the machine with short arguments form,
+To insert coins into the machine with short form,
 ```bash
-$ insert -ct 1,2,5 --ca 2,4,2
+insert -ct 1,2,5 --ca 2,4,2
 ```
 ---
 **NOTE**
@@ -113,12 +113,12 @@ Please be aware of the number of coin types and the number of coin amounts must 
 
 To buy a product and receive correct change,
 ```bash
-$ buy --amount 10
+buy --amount 10
 ```
 
-To buy a product and receive correct change with short arguments form,
+To buy a product and receive correct change with short form,
 ```bash
-$ buy -a 10
+buy -a 10
 ```
 ### Coin CLI Commands
 
