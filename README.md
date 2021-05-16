@@ -70,7 +70,7 @@ cd coin-change
 
 npm install 
 
-npm start
+npm run start
 ```
 ## Usage
 
@@ -89,6 +89,14 @@ To initialise the machine,
 ```bash
 init --coin-types 1,2,5 --coin-amounts 2,4,2
 ```
+Output,
+```
+Success
+Coins in the machine:
+{ '1': 2, '2': 4, '5': 2 }
+```
+<br>
+
 To initialise the machine with short form,
 ```bash
 init -ct 1,2,5 -ca 2,4,2
@@ -98,6 +106,14 @@ To insert coins into the machine,
 ```bash
 insert --coin-types 1,2,5 --coin-amounts 2,4,2
 ```
+Output,
+```
+Success
+Coins in the machine:
+{ '1': 4, '2': 8, '5': 4 }
+```
+<br>
+
 To insert coins into the machine with short form,
 ```bash
 insert -ct 1,2,5 -ca 2,4,2
@@ -119,6 +135,15 @@ To buy a product and receive correct change with short form,
 ```bash
 buy -a 10
 ```
+Output,
+```
+Success
+Change:
+[ { type: 5, amount: 2 } ]
+Coins in the machine:
+{ '1': 4, '2': 8, '5': 2 }
+```
+
 ### Coin CLI Commands
 
 | Command 	| Arguments                                          	| Arguments short form           	| Operation                                                                                       	|

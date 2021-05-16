@@ -101,8 +101,13 @@ export class CoinModule {
     private getChange(amount: number): Coin[] {
         const coinTypes = Object.keys(this.machineCoins);
         const coins = [];
-        for (let index = amount-1; index > -1; index--) {
+        const biggestCoin = parseInt(coinTypes[coinTypes.length-1], 10);
+        const startValue = (amount-1) > biggestCoin ? biggestCoin : (amount-1);
+        for (let index = startValue; index > -1; index--) {
             const coin = coinTypes[index];
+            if(!coin) {
+                continue;
+            }
             const coinType = parseInt(coin, 10);
             const coinAmount = this.machineCoins[coin];
             const neededAmount = Math.floor(amount / coinType);
@@ -127,6 +132,9 @@ export class CoinModule {
     }
 
     private getCoinSum(coins: Coin[]): number {
+        if(coins.length === 0){
+            return 0;
+        }
         return (coins.map((coin) => coin.amount * coin.type)).reduce((c1, c2) => c1 + c2);
     }
 

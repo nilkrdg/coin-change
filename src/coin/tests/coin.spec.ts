@@ -67,6 +67,14 @@ describe('Coin API Error Cases', () => {
         expect(changeMessage.message).toBe('Not enough coin to purchase!');
     });
 
+    it('should return error when no user coins are present', () => {
+        const userCoins = [];
+        coinModule.registerUserCoins(userCoins);
+        const changeMessage = coinModule.buy(7);
+        expect(changeMessage.result).toBe(ResultEnum.Error);
+        expect(changeMessage.message).toBe('Not enough coin to purchase!');
+    });
+
     it('should return coin type not found!', () => {
         const checkCoinMessage = coinModule.checkCoinAmount(2);
         expect(checkCoinMessage.result).toBe(ResultEnum.Error);
