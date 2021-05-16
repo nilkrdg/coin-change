@@ -72,7 +72,7 @@ export class Parser {
             return values;
         } else if (argumentDefinition.type === 'number') {
             const value = parseInt(argumentWord, 10);
-            if (isNaN(value)) {
+            if (isNaN(value) || value < 0) {
                 throw new Error(`Invalid argument type ${argumentWord} for command ${commandName} argument ${argumentDefinition.name}!`);
             }
             return value;
