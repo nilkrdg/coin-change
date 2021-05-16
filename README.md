@@ -1,3 +1,5 @@
+# Coin Change API
+<img src="assets/coins.jpg" alt="coins" width="800"/>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -27,8 +29,6 @@
 
 
 ## About The Project
-
-<img src="assets/coins.jpg" alt="coins" width="800"/>
 
 The project includes an API to calculate and keep Coin change for a vending machine and an interactive test harness to play with it.
 
