@@ -55,6 +55,7 @@ The buy method returns the least amount of change if it is not possible to retur
 | buy               	| Returns the correct change and removes coins from the machine. 	| amount: Number   	| CoinMessage 	| Returns change 	| Returns all user coins back 	|
 | checkCoinAmount   	| Returns the amount of the specified coin.                      	| coinType: Number 	| CoinMessage 	|                	|                             	|
 | printMachineCoins 	| Prints the contents of the machine.                            	|                  	|             	|                	|                             	|
+
 <br><br>
 
 ### Coin API Response Types 
@@ -64,7 +65,7 @@ The response type CoinMessage is an object that carries the following properties
   result: 'Success' | 'Error',
   message: String,
   data: Coin[] | Number
-  }
+}
 ```
 The response type Coin is an object thathas the following properties: <br>
 ```javascript
