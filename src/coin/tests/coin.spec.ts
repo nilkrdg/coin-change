@@ -1,5 +1,5 @@
 import { CoinModule } from "../coin.module";
-import { ResultEnum } from "../interfaces/coin.interface";
+import { ResultEnum } from "../coin.interface";
 
 const coinModule = new CoinModule();
 describe('Coin API Success Cases', () => {

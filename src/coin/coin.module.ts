@@ -1,4 +1,4 @@
-import { Coin, CoinMap, CoinMessage, ResultEnum } from "./interfaces/coin.interface";
+import { Coin, CoinMap, CoinMessage, ResultEnum } from "./coin.interface";
 
 export class CoinModule {
     private machineCoins: CoinMap = {};

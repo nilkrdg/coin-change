@@ -8,6 +8,7 @@
       <ul>
         <li><a href="#design-decisions">Design Decisions</a></li>
         <li><a href="#coin-api-methods">Coin API Methods</a></li>
+        <li><a href="#coin-api-response-types">Coin API Response Types</a></li>
       </ul>
     </li>
     <li>
@@ -33,27 +34,45 @@ The project includes an API to calculate and keep Coin change for a vending mach
 
 ### Design Decisions
 
-The Coin API solves the following problems:
-* Initialise the vending machine to a known state with given coins:<br>
-This solved by keeping coins in a HashMap in the Coin API. HashMap has complexity of O(1) for insertion and lookup. Because of this reason it is preferred.
-* Register coins that have been deposited by a user:<br>
-Coins from a user added into machine coins whilst user coins also saved separately in an array. The reason to keep user coins sperately is to return them back in case of a request results with an error. Not enough change, not enough user coins to buy etc.
-* Return the correct change to a user as coins when an order is received:<br>
+The Coin API solves the following problems
+1. Initialise the vending machine to a known state with given coins <br>
+This solved by keeping coins in a HashMap in the Coin API. HashMap has complexity of O(1) for insertion and lookup. Because of this reason it is preferred.<br><br>
+2. Register coins that have been deposited by a user <br>
+Coins from a user added into machine coins whilst user coins also saved separately in an array. The reason to keep user coins sperately is to return them back in case of a request results with an error. Not enough change, not enough user coins to buy etc.<br><br>
+3. Return the correct change to a user as coins when an order is received <br>
 Although a classic HashMap doesn't keep the order, Object is used as a HashMap and the order is preserved in small to bigger coin types.
-To be able to find least number of coins for a change the hashmap order is reversed with reverse() method. The time complexity for reverse is O(n).
-The correct change amount is searched by a loop. The time complexity for whole operation is O(n). The buy method returns the least amount of change if it is not possible to return change or user does not insert enough coins to buy, the method retuns error message and all the coins user inserted by using insert method.
+To be able to find least number of coins for a change the hashmap is iteratred in reverse order starting from the biggest coin or if the change amount is bigger starts from the change. The time complexity for getChange method is O(N), N is the number of coin types. 
+The buy method returns the least amount of change if it is not possible to return change or user does not insert enough coins to buy, the method retuns error message and it returns all the coins user inserted by using insert method.
 <br><br>
+
 ### Coin API Methods 
 
-| Method            	| Operation                                                     	| Param 	| Param Type                         	| Response Type                          	| Success        	| Error                       	|
-|-------------------	|---------------------------------------------------------------	|----------------	|----------------------------------------	|----------------------------------------	|----------------	|-----------------------------	|
-| initialiseMachine 	| Initialises the machine with given coins                      	| coins          	| Object[] 	| Object[] 	| -              	| -                           	|
-| registerUserCoins 	| Accepts user coins in the machine                             	| coins          	| Object[] 	| Object[] 	| -              	| -                           	|
-| buy               	| Returns the correct change and removes coins from the machine 	| amount         	| Number                              | Object[] 	| Returns change 	| Returns all user coins back 	|
-| printMachineCoins 	| Prints the contents of the machine                            	| -              	| -                                     | -                                     | -              	| -                           	|
-
-
+| Method            	| Operation                                                      	| Parameter        	| Response    	| Success        	| Error                       	|
+|-------------------	|----------------------------------------------------------------	|------------------	|-------------	|----------------	|-----------------------------	|
+| initialiseMachine 	| Initialises the machine with given coins.                      	| coins: Coin[]    	| CoinMessage 	|                	|                             	|
+| reset             	| Resets all the API state.                                      	|                  	| CoinMessage 	|                	|                             	|
+| registerUserCoins 	| Accepts user coins in the machine.                             	| coins: Coin[]    	| CoinMessage 	|                	|                             	|
+| buy               	| Returns the correct change and removes coins from the machine. 	| amount: Number   	| CoinMessage 	| Returns change 	| Returns all user coins back 	|
+| checkCoinAmount   	| Returns the amount of the specified coin.                      	| coinType: Number 	| CoinMessage 	|                	|                             	|
+| printMachineCoins 	| Prints the contents of the machine.                            	|                  	|             	|                	|                             	|
 <br><br>
+
+### Coin API Response Types 
+The response type CoinMessage is an object that carries the following properties: <br>
+```javascript
+{
+  result: 'Success' | 'Error',
+  message: String,
+  data: Coin[] | Number
+  }
+```
+The response type Coin is an object thathas the following properties: <br>
+```javascript
+{
+  type: Number
+  amount: Number
+}
+```
 ## Getting Started
 
 ### Requirements

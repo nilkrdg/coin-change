@@ -1,7 +1,7 @@
-import { Coin } from "../coin/interfaces/coin.interface";
-import { COMMAND_DICTIONARY } from "../cli/constants/command-dictionary";
-import { ParsedArgument, ParsedCommand } from "./interfaces/parser.interface";
-import { ArgumentDefinition } from "../cli/interfaces/cli.interface";
+import { Coin } from "../coin/coin.interface";
+import { COMMAND_DICTIONARY } from "../cli/command-dictionary";
+import { ParsedArgument, ParsedCommand } from "./parser.interface";
+import { ArgumentDefinition } from "../cli/cli.interface";
 
 export class Parser {
     static parse(inputString: string): ParsedCommand {
