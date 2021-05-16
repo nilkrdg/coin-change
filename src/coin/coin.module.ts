@@ -44,10 +44,8 @@ export class CoinModule {
             return validationResult;
         }
         const userCoins = this.insertCoins(coins);
-        console.log(userCoins)
         for (const coin of userCoins) {
             const addedCoin = this.userCoins.find((c) => c.type === coin.type);
-            console.log(addedCoin)
             if (addedCoin) {
                 addedCoin.amount += coin.amount;
             } else {
