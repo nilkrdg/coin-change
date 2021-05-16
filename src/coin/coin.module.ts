@@ -10,6 +10,7 @@ export class CoinModule {
      * @returns CoinResponse - Message indicates the operation is successful.
      */
     public initialiseMachine(coins: Coin[]): CoinResponse {
+        this.machineCoins = {};
         const validationResult = this.validateCoins(coins);
         if(validationResult.result === ResultEnum.Error) {
             return validationResult;
