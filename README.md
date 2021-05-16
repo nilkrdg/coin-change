@@ -45,11 +45,11 @@ The correct change amount is searched by a loop. The time complexity for whole o
 <br><br>
 ### Coin API Methods 
 
-| Method            	| Operation                                                     	| Parameter Name 	| Parameter Type                         	| Response Type                          	| Success        	| Error                       	|
+| Method            	| Operation                                                     	| Param 	| Param Type                         	| Response Type                          	| Success        	| Error                       	|
 |-------------------	|---------------------------------------------------------------	|----------------	|----------------------------------------	|----------------------------------------	|----------------	|-----------------------------	|
-| initialiseMachine 	| Initialises the machine with given coins                      	| coins          	| `[{ type: Number,amount: Number }]` 	| `[{ type: Number,amount: Number }]` 	| -              	| -                           	|
-| registerUserCoins 	| Accepts user coins in the machine                             	| coins          	| `[{ type: Number,amount: Number }]` 	| `[{ type: Number,amount: Number }]` 	| -              	| -                           	|
-| buy               	| Returns the correct change and removes coins from the machine 	| amount         	| `Number`                              | `[{ type: Number,amount: Number }]` 	| Returns change 	| Returns all user coins back 	|
+| initialiseMachine 	| Initialises the machine with given coins                      	| coins          	| Object[] 	| Object[] 	| -              	| -                           	|
+| registerUserCoins 	| Accepts user coins in the machine                             	| coins          	| Object[] 	| Object[] 	| -              	| -                           	|
+| buy               	| Returns the correct change and removes coins from the machine 	| amount         	| Number                              | Object[] 	| Returns change 	| Returns all user coins back 	|
 | printMachineCoins 	| Prints the contents of the machine                            	| -              	| -                                     | -                                     | -              	| -                           	|
 
 
@@ -121,10 +121,13 @@ buy -a 10
 ```
 ### Coin CLI Commands
 
-| Command 	| Arguments                                                 	| Arguments short form                 	| Operation                                                                                       	|
-|---------	|-----------------------------------------------------------	|--------------------------------------	|-------------------------------------------------------------------------------------------------	|
-| init    	| --coin-types numberArray <br> --coin-amounts numberArray  	| -ct numberArray <br> -ca numberArray 	| Initialises the machine with given coins.                                                       	|
-| insert  	| --coin-types numberArray <br> --coin-amounts numberArray  	| -ct numberArray <br> -ca numberArray 	| Accepts user coins in the machine.                                                              	|
-| buy     	| --amount number                                      	| -a  number                       	| Returns the correct change and removes coins from the machine.                                  	|
-| help  	|                                                           	|                                      	| Prints the list of commands. If command name argument is present print details of that command. 	|
-| quit  	|                                                           	|                                      	| Terminates the Coin CLI.                                                                        	|
+| Command 	| Arguments                                          	| Arguments short form           	| Operation                                                                                       	|
+|---------	|----------------------------------------------------	|--------------------------------	|-------------------------------------------------------------------------------------------------	|
+| init    	| --coin-types Number[] <br> --coin-amounts Number[] 	| -ct Number[] <br> -ca Number[] 	| Initializes the machine with given coins.                                                       	|
+| insert  	| --coin-types Number[] <br> --coin-amounts Number[] 	| -ct Number[] <br> -ca Number[] 	| Accepts user coins in the machine.                                                              	|
+| buy     	| --amount Number                               	| -a Number                 	| Returns the correct change and removes coins from the machine.                                  	|
+| coin    	| --type Number                                 	| -t Number                 	| Returns the amount of the specified coin.                                                       	|
+| reset   	|                                                    	|                                	| Resets all the API state.                                                                       	|
+| print   	|                                                    	|                                	| Prints all the coins in the machine.                                                            	|
+| quit    	|                                                    	|                                	| Terminates the Coin CLI.                                                                        	|
+| help    	|                                                    	|                                	| Prints the list of commands. If command name argument is present print the details of the command. 	|
