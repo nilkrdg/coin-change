@@ -8,6 +8,9 @@ export class CLI {
 
     public executeCommand(commandString: string): void {
         const command = Parser.parse(commandString);
+        if(!command){
+            return;
+        }
         switch (command.name) {
             case 'init': {
                 const coins = Parser.getCoins(command);
