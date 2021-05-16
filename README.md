@@ -76,20 +76,20 @@ npm run start
 
 The project includes an interactive test harness (CLI). 
 
-You can list all CLI commands.
+You can list all CLI commands:
 ```bash
 help
 ```
-You can list details of a CLI command.
+You can list details of a CLI command:
 ```bash
 help init
 ```
 
-To initialise the machine,
+To initialise the machine:
 ```bash
 init --coin-types 1,2,5 --coin-amounts 2,4,2
 ```
-Output,
+Output:
 ```
 Success
 Coins in the machine:
@@ -97,16 +97,16 @@ Coins in the machine:
 ```
 <br>
 
-To initialise the machine with short form,
+To initialise the machine with short form:
 ```bash
 init -ct 1,2,5 -ca 2,4,2
 ```
 
-To insert coins into the machine,
+To insert coins into the machine:
 ```bash
 insert --coin-types 1,2,5 --coin-amounts 2,4,2
 ```
-Output,
+Output:
 ```
 Success
 Coins in the machine:
@@ -114,7 +114,7 @@ Coins in the machine:
 ```
 <br>
 
-To insert coins into the machine with short form,
+To insert coins into the machine with short form:
 ```bash
 insert -ct 1,2,5 -ca 2,4,2
 ```
@@ -126,16 +126,16 @@ Please be aware of the number of coin types and the number of coin amounts must 
 <br>
 
 
-To buy a product and receive correct change,
+To buy a product and receive correct change:
 ```bash
 buy --amount 10
 ```
 
-To buy a product and receive correct change with short form,
+To buy a product and receive correct change with short form:
 ```bash
 buy -a 10
 ```
-Output,
+Output:
 ```
 Success
 Change:
