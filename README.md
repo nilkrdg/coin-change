@@ -42,9 +42,9 @@ The project includes an API to calculate and keep Coin change for a vending mach
 
 The Coin API solves the following problems
 1. Initialise the vending machine to a known state with given coins <br>
-This solved by keeping coins in a HashMap in the Coin API. HashMap has complexity of O(1) for insertion and lookup. Because of this reason it is preferred.<br><br>
+This is solved by keeping coins in a HashMap in the Coin API. HashMap has complexity of O(1) for insertion and lookup because of this reason it is preferred.<br><br>
 2. Register coins that have been deposited by a user <br>
-Coins from a user added into machine coins whilst user coins also saved separately in an array. The reason to keep user coins sperately is to return them back in case of a request results with an error. Not enough change, not enough user coins to buy etc.<br><br>
+When user inserts coins into the machine, the user coins is saved in an array in memory. The reason to keep user coins sperately is to return them back in case of a request results with an error. Not enough change, not enough user coins to buy etc.<br><br>
 3. Return the correct change to a user as coins when an order is received <br>
 Although a classic HashMap doesn't keep the order, Object is used as a HashMap and the order is preserved in small to bigger coin types.
 To be able to find least number of coins for a change the hashmap is iteratred in reverse order starting from the biggest coin or if the change amount is bigger starts from the change. The time complexity for getChange method is O(N), N is the number of coin types. 
