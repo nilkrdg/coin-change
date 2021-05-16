@@ -3,11 +3,11 @@ import { ResultEnum } from "../coin.interface";
 
 const coinModule = new CoinModule();
 describe('Coin API Success Cases', () => {
-    beforeAll(() => {
+    beforeEach(() => {
         const machineCoins = [{type: 1, amount: 3}, {type: 2, amount: 2}, {type: 5, amount: 1}];
         coinModule.initialiseMachine(machineCoins);
       });
-      afterAll(() => {
+      afterEach(() => {
         coinModule.reset();
       });
     it('checks if the machine is initialised correctly', () => {
@@ -44,11 +44,11 @@ describe('Coin API Success Cases', () => {
 });
 
 describe('Coin API Error Cases', () => {
-    beforeAll(() => {
+    beforeEach(() => {
         const machineCoins = [{type: 1, amount: 1}, {type: 5, amount: 4}];
         coinModule.initialiseMachine(machineCoins);
       });
-      afterAll(() => {
+      afterEach(() => {
         coinModule.reset();
       });
     it('should return Not enough coins!', () => {
@@ -84,14 +84,14 @@ describe('Coin API Error Cases', () => {
 
 
 describe('Coin API Stress Cases', () => {
-    beforeAll(() => {
+    beforeEach(() => {
         const machineCoins = [];
         for(let i = 1; i < 15000; i++) {
             machineCoins .push({type: i, amount: 10});
         }
         coinModule.initialiseMachine(machineCoins);
       });
-      afterAll(() => {
+      afterEach(() => {
         coinModule.reset();
       });
 
