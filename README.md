@@ -24,6 +24,12 @@
             <li><a href="#coin-cli-commands">Coin CLI Commands</a></li>
         </ul>
     </li>
+    <li>
+        <a href="#test">Test</a>
+    </li>
+    <li>
+        <a href="#further-work">Further Work</a>
+    </li>
   </ol>
 </details>
 
@@ -176,3 +182,21 @@ Coins in the machine:
 | print   	|                                                    	|                                	| Prints all the coins in the machine.                                                            	|
 | quit    	|                                                    	|                                	| Terminates the Coin CLI.                                                                        	|
 | help    	|                                                    	|                                	| Prints the list of commands. If command name argument is present print the details of the command. 	|
+
+
+<br><br>
+
+## Test
+
+Run the following command to execute tests:
+```bash
+npm test
+```
+
+<br><br>
+
+## Further Work
+
+* There is need to add tests for CLI and Parser modules.
+* More cases should be covered by Coin Module tests.
+* getChange method performance could be improved. Although getChange method time complexity is O(n), the performance reduces if the amount parameter is too big. 
