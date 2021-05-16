@@ -4,15 +4,15 @@ export class CoinModule {
     private machineCoins: CoinMap = {};
     private userCoins: Coin[] = [];
 
-    public initialiseMachine(coinTypes: number[], coinAmounts: number[]): CoinMessage {
-        this.insertCoins(this.machineCoins, coinTypes, coinAmounts);
+    public initialiseMachine(coins: Coin[]): CoinMessage {
+        this.insertCoins(coins);
         return {
             result: ResultEnum.Success
         };
     }
 
-    public registerUserCoins(coinTypes: number[], coinAmounts: number[]): CoinMessage {
-        this.userCoins = this.insertCoins(this.machineCoins, coinTypes, coinAmounts);
+    public registerUserCoins(coins: Coin[]): CoinMessage {
+        this.userCoins = this.insertCoins(coins);
         return {
             result: ResultEnum.Success
         };
@@ -72,19 +72,12 @@ export class CoinModule {
         return changesArray.filter((change) => change.amount !== 0);
     }
 
-    private insertCoins(coinMap: CoinMap, coinTypes: number[], coinAmounts: number[]): Coin[] {
-        if (coinTypes.length !== coinAmounts.length) {
-            return;
-        }
-        const coins = [];
-        for (let index = 0; index < coinTypes.length; index++) {
-            const coinType = coinTypes[index];
-            const coinAmount = coinAmounts[index];
-            if (!coinMap[coinType]) {
-                coinMap[coinType] = 0;
+    private insertCoins(coins: Coin[]): Coin[] {
+        for (const coin of coins) {
+            if (!this.machineCoins[coin.type]) {
+                this.machineCoins[coin.type] = 0;
             }
-            coinMap[coinType] += coinAmount;
-            coins.push({ type: coinType, amount: coinAmount });
+            this.machineCoins[coin.type] += coin.amount;
         }
         return coins;
     }

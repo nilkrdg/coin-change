@@ -10,19 +10,15 @@ export class CLI {
         const command = Parser.parse(commandString);
         switch (command.name) {
             case 'init': {
-                const coinTypes = Parser.getCoinTypes(command);
-                const coinAmount = Parser.getCoinAmount(command);
-                const resultMessage = this.coinModule.initialiseMachine(coinTypes as number[],
-                    coinAmount as number[]);
+                const coins = Parser.getCoins(command);
+                const resultMessage = this.coinModule.initialiseMachine(coins);
                 console.log(resultMessage.result);
                 this.coinModule.printMachineCoins();
             }
                 break;
             case 'insert': {
-                const coinTypes = Parser.getCoinTypes(command);
-                const coinAmount = Parser.getCoinAmount(command);
-                const resultMessage = this.coinModule.registerUserCoins(coinTypes as number[],
-                    coinAmount as number[]);
+                const coins = Parser.getCoins(command);
+                const resultMessage = this.coinModule.registerUserCoins(coins);
                 console.log(resultMessage.result);
                 this.coinModule.printMachineCoins();
             }

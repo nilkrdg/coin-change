@@ -1,3 +1,4 @@
+import { Coin } from "../coin/coin.interface";
 import { COMMAND_DICTIONARY } from "./command-dictionary";
 import { ArgumentDefinition, ParsedArgument, ParsedCommand } from "./parser.interface";
 
@@ -98,6 +99,16 @@ export class Parser {
 
     static getCoinAmount(command: ParsedCommand): number[] {
         return command.arguments.find((argument) => argument.name === 'ca' || argument.name === 'coin-amount').value as number[];
+    }
+
+    static getCoins(command: ParsedCommand): Coin[] {
+        const coinTypes = command.arguments.find((argument) => argument.name === 'ct' || argument.name === 'coin-types').value as number[];
+        const coinAmounts = command.arguments.find((argument) => argument.name === 'ca' || argument.name === 'coin-amount').value as number[];
+        const coins: Coin[] = [];
+       for (let index = 0; index < coinTypes.length; index++) {
+           coins.push({type: coinTypes[index], amount: coinAmounts[index]});
+       }
+       return coins;
     }
 
     static getAmount(command: ParsedCommand): number {
