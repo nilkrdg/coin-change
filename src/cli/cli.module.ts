@@ -24,6 +24,7 @@ export class CLI {
                     const coins = Parser.getCoins(command);
                     const resultMessage = this.coinModule.registerUserCoins(coins);
                     console.log(resultMessage.result);
+                    this.coinModule.printUserCoins();
                     this.coinModule.printMachineCoins();
                     break;
                 }

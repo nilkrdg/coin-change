@@ -41,6 +41,18 @@ export class CoinModule {
     }
 
     /**
+     * @brief Prints the user coins.
+     * @returns CoinResponse - Message indicates the operation is successful.
+     */
+    public printUserCoins(): CoinResponse {
+        console.log("Coins inserted by user:");
+        console.log(this.userCoins);
+        return {
+            result: ResultEnum.Success
+        };
+    }
+
+    /**
      * @brief Returns the correct change and reduces the coins from the machine.
      * @param Number productPrice - The price of a product.
      * @returns CoinResponse - Message indicates the operation is successful or not and the change as a list of coins.
@@ -101,11 +113,11 @@ export class CoinModule {
     private getChange(amount: number): Coin[] {
         const coinTypes = Object.keys(this.machineCoins);
         const coins = [];
-        const biggestCoin = parseInt(coinTypes[coinTypes.length-1], 10);
-        const startValue = (amount-1) > biggestCoin ? biggestCoin : (amount-1);
+        const biggestCoin = parseInt(coinTypes[coinTypes.length - 1], 10);
+        const startValue = (amount - 1) > biggestCoin ? biggestCoin : (amount - 1);
         for (let index = startValue; index > -1; index--) {
             const coin = coinTypes[index];
-            if(!coin) {
+            if (!coin) {
                 continue;
             }
             const coinType = parseInt(coin, 10);
@@ -132,7 +144,7 @@ export class CoinModule {
     }
 
     private getCoinSum(coins: Coin[]): number {
-        if(coins.length === 0){
+        if (coins.length === 0) {
             return 0;
         }
         return (coins.map((coin) => coin.amount * coin.type)).reduce((c1, c2) => c1 + c2);
