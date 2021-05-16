@@ -1,4 +1,4 @@
-import { Coin, CoinMap, CoinMessage, ResultEnum } from "./coin.interface";
+import { Coin, CoinMap, CoinResponse, ResultEnum } from "./coin.interface";
 
 export class CoinModule {
     private machineCoins: CoinMap = {};
@@ -7,9 +7,9 @@ export class CoinModule {
     /**
      * @brief Init command initialises the machine storage with the given amount.
      * @param Coin coins - A list of coins.
-     * @returns CoinMessage - Message indicates the operation is successful.
+     * @returns CoinResponse - Message indicates the operation is successful.
      */
-    public initialiseMachine(coins: Coin[]): CoinMessage {
+    public initialiseMachine(coins: Coin[]): CoinResponse {
         this.insertCoins(coins);
         return {
             result: ResultEnum.Success
@@ -18,9 +18,9 @@ export class CoinModule {
 
     /**
      * @brief Resets the API states.
-     * @returns CoinMessage - Message indicates the operation is successful.
+     * @returns CoinResponse - Message indicates the operation is successful.
      */
-    public reset(): CoinMessage {
+    public reset(): CoinResponse {
         this.machineCoins = {};
         this.userCoins = [];
         return {
@@ -31,9 +31,9 @@ export class CoinModule {
     /**
      * @brief Registers the user coins.
      * @param Coin coins - A list of coins.
-     * @returns CoinMessage - Message indicates the operation is successful.
+     * @returns CoinResponse - Message indicates the operation is successful.
      */
-    public registerUserCoins(coins: Coin[]): CoinMessage {
+    public registerUserCoins(coins: Coin[]): CoinResponse {
         this.userCoins = this.insertCoins(coins);
         return {
             result: ResultEnum.Success
@@ -43,9 +43,9 @@ export class CoinModule {
     /**
      * @brief Returns the correct change and reduces the coins from the machine.
      * @param Number productPrice - The price of a product.
-     * @returns CoinMessage - Message indicates the operation is successful or not and the change as a list of coins.
+     * @returns CoinResponse - Message indicates the operation is successful or not and the change as a list of coins.
      */
-    public buy(productPrice: number): CoinMessage {
+    public buy(productPrice: number): CoinResponse {
         const userCoinSum = this.getCoinSum(this.userCoins);
         if (this.userCoins.length === 0 || userCoinSum < productPrice) {
             return {
@@ -76,9 +76,9 @@ export class CoinModule {
     /**
      * @brief Returns the amount of the specified coin.
      * @param Number coinType - Coin type.
-     * @returns CoinMessage - Message indicates the operation is successful or not.
+     * @returns CoinResponse - Message indicates the operation is successful or not.
      */
-    public checkCoinAmount(coinType: number): CoinMessage {
+    public checkCoinAmount(coinType: number): CoinResponse {
         const coinAmount = this.machineCoins[coinType];
         if (!coinAmount) {
             return { result: ResultEnum.Error, message: `Coin type ${coinType} not found!` };
@@ -88,9 +88,9 @@ export class CoinModule {
 
     /**
      * @brief Prints the contents of the machine.
-     * @returns CoinMessage - Message indicates the operation is successful.
+     * @returns CoinResponse - Message indicates the operation is successful.
      */
-    public printMachineCoins(): CoinMessage {
+    public printMachineCoins(): CoinResponse {
         console.log("Coins in the machine:");
         console.log(this.machineCoins);
         return {

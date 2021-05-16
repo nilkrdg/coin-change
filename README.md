@@ -54,19 +54,19 @@ The buy method returns change using the least amount of coins. If there are not 
 
 ### Coin API Methods 
 
-| Method            	| Operation                                                      	| Parameter        	| Response    	| Success        	| Error                       	|
-|-------------------	|----------------------------------------------------------------	|------------------	|-------------	|----------------	|-----------------------------	|
-| initialiseMachine 	| Initialises the machine with given coins.                      	| coins: Coin[]    	| CoinMessage 	|                	|                             	|
-| reset             	| Resets all the API state.                                      	|                  	| CoinMessage 	|                	|                             	|
-| registerUserCoins 	| Accepts user coins in the machine.                             	| coins: Coin[]    	| CoinMessage 	|                	|                             	|
-| buy               	| Returns the correct change and removes coins from the machine. 	| amount: Number   	| CoinMessage 	| Returns change 	| Returns all user coins back 	|
-| checkCoinAmount   	| Returns the amount of the specified coin.                      	| coinType: Number 	| CoinMessage 	|                	|                             	|
-| printMachineCoins 	| Prints the contents of the machine.                            	|                  	| CoinMessage   |                	|                             	|
+| Method            	| Operation                                                      	| Parameter        	| Response    	| Response Data   |
+|-------------------	|----------------------------------------------------------------	|------------------	|-------------	|----------------	|
+| initialiseMachine 	| Initialises the machine with the given coins.                   | coins: Coin[]    	| CoinResponse 	|      None       |
+| reset             	| Resets all the API state.                                      	|       None        | CoinResponse 	|      None       | 
+| registerUserCoins 	| Accepts user coins in the machine.                             	| coins: Coin[]    	| CoinResponse 	|      None       |
+| buy               	| Returns the correct change and removes coins from the machine. 	| amount: Number   	| CoinResponse 	| On Success: change <br> On Error: user coins |
+| checkCoinAmount   	| Returns the amount of the specified coin.                      	| coinType: Number 	| CoinResponse 	| On Success: Coin amount |
+| printMachineCoins 	| Prints the contents of the machine.                            	|         None      | CoinResponse   |      None       |
 
 <br><br>
 
 ### Coin API Response Types 
-The response type CoinMessage is an object that carries the following properties: <br>
+The response type CoinResponse is an object that carries the following properties: <br>
 ```javascript
 {
   result: 'Success' | 'Error',
