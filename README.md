@@ -1,6 +1,4 @@
 # Coin Change API
-<img src="assets/coins.jpg" alt="coins" width="800"/>
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
