@@ -1,4 +1,4 @@
-import { CommandDictionary } from "./cli.interface";
+import { CommandDictionary } from "./parser.interface";
 
 export const COMMAND_DICTIONARY: CommandDictionary = {
     init: {
@@ -39,7 +39,7 @@ export const COMMAND_DICTIONARY: CommandDictionary = {
         argumentsOptional: false,
     },
     help: {
-        description: `Help command prints all available commands \n 
+        description: `Help command prints all available commands \n
         or the details of the given command if it is present as an argument.`,
         arguments: [],
         numberOfArguments: 1,
@@ -47,7 +47,7 @@ export const COMMAND_DICTIONARY: CommandDictionary = {
 
     },
     h: {
-        description: `Short form of Help command prints all available commands \n 
+        description: `Short form of Help command prints all available commands \n
         or the details of the given command if it is present as an argument.`,
         arguments: [],
         numberOfArguments: 1,
