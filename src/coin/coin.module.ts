@@ -36,8 +36,8 @@ export class CoinModule {
     public registerUserCoins(coins: Coin[]): CoinResponse {
         const userCoins = this.insertCoins(coins);
         for (const coin of userCoins) {
-            const addedCoin = this.userCoins.find((c)=>c.type === coin.type);
-            if(addedCoin) {
+            const addedCoin = this.userCoins.find((c) => c.type === coin.type);
+            if (addedCoin) {
                 coin.amount += addedCoin.amount;
             } else {
                 this.userCoins.push(coin);
@@ -134,7 +134,7 @@ export class CoinModule {
             const coinCount = (coinAmount - neededAmount) >= 0 ? neededAmount : coinAmount;
             amount -= coinCount * coinType;
             if (coinCount !== 0) {
-                this.machineCoins[coin] -= coinCount;
+                this.removeCoinFromMachine({ type: parseInt(coin, 10), amount: coinCount });
                 coins.push({ type: coinType, amount: coinCount });
             }
         }
@@ -160,14 +160,24 @@ export class CoinModule {
 
     private returnUserCoins(): Coin[] {
         for (const coin of this.userCoins) {
-            this.machineCoins[coin.type] -= coin.amount;
+            this.removeCoinFromMachine(coin);
         }
+        this.userCoins = [];
         return this.userCoins;
     }
 
     private addCoinsBack(changes: Coin[]) {
         for (const coin of changes) {
             this.machineCoins[coin.type] += coin.amount;
+        }
+    }
+
+    private removeCoinFromMachine(coin: Coin): void {
+        if (this.machineCoins[coin.type]) {
+            this.machineCoins[coin.type] -= coin.amount;
+            if (this.machineCoins[coin.type] === 0) {
+                delete this.machineCoins[coin.type];
+            }
         }
     }
 }

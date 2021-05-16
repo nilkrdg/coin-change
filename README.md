@@ -202,5 +202,5 @@ npm test
 ## Further Work
 
 * There is need to add tests for CLI and Parser modules.
+* Adding coin type checks into Coin API.
 * More cases should be covered by Coin Module tests.
-* getChange method performance could be improved. Although getChange method time complexity is O(n), the performance reduces if the amount parameter is too big. 
