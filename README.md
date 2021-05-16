@@ -67,7 +67,7 @@ The response type CoinMessage is an object that carries the following properties
   data: Coin[] | Number
 }
 ```
-The response type Coin is an object thathas the following properties: <br>
+The response type Coin is an object that has the following properties: <br>
 ```javascript
 {
   type: Number
