@@ -59,6 +59,7 @@ The buy method returns change using the least amount of coins. If there are not 
 | initialiseMachine 	| Initialises the machine with the given coins.                   | coins: Coin[]    	| CoinResponse 	|      None       |
 | reset             	| Resets the machine and all the API states.                      |       None        | CoinResponse 	|      None       | 
 | registerUserCoins 	| Accepts user coins into the machine.                            | coins: Coin[]    	| CoinResponse 	|      None       |
+| printUserCoins 	    | Prints user coins.                                              | None             	| CoinResponse 	|      None       |
 | buy               	| Returns the correct change and removes coins from the machine. 	| amount: Number   	| CoinResponse 	| On Success: change <br> On Error: user coins |
 | checkCoinAmount   	| Returns the amount of the specified coin.                      	| coinType: Number 	| CoinResponse 	| On Success: Coin amount |
 | printMachineCoins 	| Prints the contents of the machine.                            	|         None      | CoinResponse   |      None       |
@@ -136,6 +137,8 @@ insert --coin-types 1,2,5 --coin-amounts 2,4,2
 Output:
 ```
 Success
+Coins inserted by user:
+[ { type: 1, amount: 2 }, { type: 2, amount: 4 }, { type: 5, amount: 2 }]
 Coins in the machine:
 { '1': 4, '2': 8, '5': 4 }
 ```

@@ -34,7 +34,15 @@ export class CoinModule {
      * @returns CoinResponse - Message indicates the operation is successful.
      */
     public registerUserCoins(coins: Coin[]): CoinResponse {
-        this.userCoins = this.insertCoins(coins);
+        const userCoins = this.insertCoins(coins);
+        for (const coin of userCoins) {
+            const addedCoin = this.userCoins.find((c)=>c.type === coin.type);
+            if(addedCoin) {
+                coin.amount += addedCoin.amount;
+            } else {
+                this.userCoins.push(coin);
+            }
+        }
         return {
             result: ResultEnum.Success
         };
