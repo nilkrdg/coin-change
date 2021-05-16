@@ -46,9 +46,9 @@ This is solved by keeping coins in a HashMap in the Coin API. HashMap has comple
 2. Register coins that have been deposited by a user <br>
 When the user inserts coins into the machine, the user coins are saved in an array in memory. The reason to keep the user coins seperate is to return them back in case a request results in an error (e.g. not enough change, not enough user coins to buy etc.).<br><br>
 3. Return the correct change to a user as coins when an order is received <br>
-Although a classic HashMap doesn't keep the order, Object is used as a HashMap and the order is preserved in small to bigger coin types.
-To be able to find least number of coins for a change the hashmap is iteratred in reverse order starting from the biggest coin or if the change amount is bigger starts from the change. The time complexity for getChange method is O(N), N is the number of coin types. 
-The buy method returns the least amount of change if it is not possible to return change or user does not insert enough coins to buy, the method retuns error message and it returns all the coins user inserted by using insert method.
+Although a classic HashMap doesn't keep the order, a JavaScript Object is used as a HashMap and the order is preserved in small to bigger coin types.
+To be able to find least number of coins for change, the hashmap is iterated over in reverse order. The iteration starts from the biggest coin or if the change amount is bigger than all coin types, it starts from the change amount. The time complexity for the getChange method is O(N) where N is the number of coin types.
+The buy method returns change with the least amount of coins. If there are not enough coins in the machine or the user does not insert enough coins to buy, the method returns an error message alongside all the coins the user inserted.
 <br><br>
 
 ### Coin API Methods 
