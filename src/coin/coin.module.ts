@@ -98,7 +98,7 @@ export class CoinModule {
             this.addCoinsBack(changes);
             return {
                 result: ResultEnum.Error,
-                message: 'Not enough coins!',
+                message: 'Not enough coins for change!',
                 data: this.returnUserCoins()
             };
         }

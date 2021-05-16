@@ -34,8 +34,10 @@ export class CLI {
                     console.log(resultMessage.result);
                     if (resultMessage.result === ResultEnum.Error) {
                         console.error(resultMessage.message);
+                        console.log("Returned coins:");
+                    } else {
+                        console.log("Change:");
                     }
-                    console.log("Change:");
                     console.log(resultMessage.data);
                     this.coinModule.printMachineCoins();
                     break;
