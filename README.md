@@ -17,11 +17,12 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li>
+        <a href="#usage">Usage</a>
+        <ul>
+            <li><a href="#coin-cli-commands">Coin CLI Commands</a></li>
+        </ul>
+    </li>
   </ol>
 </details>
 
@@ -33,11 +34,11 @@ The project includes an API to calculate and keep Coin change for a vending mach
 ### Design Decisions
 
 The Coin API solves the following problems:
-* Initialise the vending machine to a known state with given coins:
+* Initialise the vending machine to a known state with given coins:<br>
 This solved by keeping coins in a HashMap in the Coin API. HashMap has complexity of O(1) for insertion and lookup. Because of this reason it is preferred.
-* Register coins that have been deposited by a user:
+* Register coins that have been deposited by a user:<br>
 Coins from a user added into machine coins whilst user coins also saved separately in an array. The reason to keep user coins sperately is to return them back in case of a request results with an error. Not enough change, not enough user coins to buy etc.
-* Return the correct change to a user as coins when an order is received:
+* Return the correct change to a user as coins when an order is received:<br>
 Although a classic HashMap doesn't keep the order, Object is used as a HashMap and the order is preserved in small to bigger coin types.
 To be able to find least number of coins for a change the hashmap order is reversed with reverse() method. The time complexity for reverse is O(n).
 The correct change amount is searched by a loop. The time complexity for whole operation is O(n). The buy method returns the least amount of change if it is not possible to return change or user does not insert enough coins to buy, the method retuns error message and all the coins user inserted by using insert method.
