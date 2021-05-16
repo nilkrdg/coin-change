@@ -1,5 +1,5 @@
-import { CoinModule } from "./coin.module";
-import { ResultEnum } from "./coin.interface";
+import { CoinModule } from "../coin.module";
+import { ResultEnum } from "../interfaces/coin.interface";
 
 const coinModule = new CoinModule();
 describe('Coin API Success Cases', () => {
@@ -71,5 +71,27 @@ describe('Coin API Error Cases', () => {
         const checkCoinMessage = coinModule.checkCoinAmount(2);
         expect(checkCoinMessage.result).toBe(ResultEnum.Error);
         expect(checkCoinMessage.message).toBe(`Coin type 2 not found!`);
+    });
+});
+
+
+describe('Coin API Stress Cases', () => {
+    beforeAll(() => {
+        const machineCoins = [];
+        for(let i = 1; i < 15000; i++) {
+            machineCoins .push({type: i, amount: 10});
+        }
+        coinModule.initialiseMachine(machineCoins);
+      });
+      afterAll(() => {
+        coinModule.reset();
+      });
+
+    it('should return correct change', () => {
+        const userCoins = [{type: 5, amount: 2}];
+        coinModule.registerUserCoins(userCoins);
+        const changeMessage = coinModule.buy(7);
+        expect(changeMessage.result).toBe(ResultEnum.Success);
+        expect(changeMessage.data).toEqual([ { type: 3, amount: 1 }]);
     });
 });

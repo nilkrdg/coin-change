@@ -1,7 +1,7 @@
-import { Coin } from "../coin/coin.interface";
-import { COMMAND_DICTIONARY } from "../cli/command-dictionary";
-import { ParsedArgument, ParsedCommand } from "./parser.interface";
-import { ArgumentDefinition } from "../cli/cli.interface";
+import { Coin } from "../coin/interfaces/coin.interface";
+import { COMMAND_DICTIONARY } from "../cli/constants/command-dictionary";
+import { ParsedArgument, ParsedCommand } from "./interfaces/parser.interface";
+import { ArgumentDefinition } from "../cli/interfaces/cli.interface";
 
 export class Parser {
     static parse(inputString: string): ParsedCommand {
@@ -64,7 +64,7 @@ export class Parser {
         if (argumentDefinition.type === 'numberArray') {
             const values = argumentWord.split(',').map((w) => {
                 const value = parseInt(w, 10);
-                if (isNaN(value)) {
+                if (isNaN(value) || value < 0) {
                     throw new Error(`Invalid argument type ${argumentWord} for command ${commandName} argument ${argumentDefinition.name}!`);
                 }
                 return value;

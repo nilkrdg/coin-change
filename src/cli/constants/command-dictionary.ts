@@ -1,4 +1,4 @@
-import { CommandDictionary } from "./cli.interface";
+import { CommandDictionary } from "../interfaces/cli.interface";
 
 export const COMMAND_DICTIONARY: CommandDictionary = {
     init: {

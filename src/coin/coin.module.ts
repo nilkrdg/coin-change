@@ -1,4 +1,4 @@
-import { Coin, CoinMap, CoinMessage, ResultEnum } from "./coin.interface";
+import { Coin, CoinMap, CoinMessage, ResultEnum } from "./interfaces/coin.interface";
 
 export class CoinModule {
     private machineCoins: CoinMap = {};
@@ -80,10 +80,10 @@ export class CoinModule {
      */
     public checkCoinAmount(coinType: number): CoinMessage {
         const coinAmount = this.machineCoins[coinType];
-        if(!coinAmount){
+        if (!coinAmount) {
             return { result: ResultEnum.Error, message: `Coin type ${coinType} not found!` };
         }
-        return { result: ResultEnum.Success, data:  coinAmount};
+        return { result: ResultEnum.Success, data: coinAmount };
     }
 
     /**
@@ -99,24 +99,21 @@ export class CoinModule {
     }
 
     private getChange(amount: number): Coin[] {
-        const coinTypes = Object.keys(this.machineCoins).reverse();
-
-        const changesArray = coinTypes.map(coin => {
+        const coinTypes = Object.keys(this.machineCoins);
+        const coins = [];
+        for (let index = amount-1; index > -1; index--) {
+            const coin = coinTypes[index];
             const coinType = parseInt(coin, 10);
             const coinAmount = this.machineCoins[coin];
-            if (coinAmount === 0) {
-                return { type: coinType, amount: 0 };
-            }
             const neededAmount = Math.floor(amount / coinType);
             const coinCount = (coinAmount - neededAmount) >= 0 ? neededAmount : coinAmount;
             amount -= coinCount * coinType;
-
-            this.machineCoins[coin] -= coinCount;
-
-            return { type: coinType, amount: coinCount };
-        });
-
-        return changesArray.filter((change) => change.amount !== 0);
+            if (coinCount !== 0) {
+                this.machineCoins[coin] -= coinCount;
+                coins.push({ type: coinType, amount: coinCount });
+            }
+        }
+        return coins;
     }
 
     private insertCoins(coins: Coin[]): Coin[] {

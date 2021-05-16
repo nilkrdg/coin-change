@@ -1,8 +1,7 @@
-import { ResultEnum } from "../coin/coin.interface";
+import { ResultEnum } from "../coin/interfaces/coin.interface";
 import { CoinModule } from "../coin/coin.module";
-import { ParsedCommand } from "../parser/parser.interface";
 import { Parser } from "../parser/parser.module";
-import { COMMAND_DICTIONARY } from "./command-dictionary";
+import { COMMAND_DICTIONARY } from "./constants/command-dictionary";
 
 export class CLI {
     private coinModule = new CoinModule();
