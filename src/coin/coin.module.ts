@@ -162,8 +162,9 @@ export class CoinModule {
         for (const coin of this.userCoins) {
             this.removeCoinFromMachine(coin);
         }
+        const userCoins = this.userCoins;
         this.userCoins = [];
-        return this.userCoins;
+        return userCoins;
     }
 
     private addCoinsBack(changes: Coin[]) {
@@ -179,5 +180,13 @@ export class CoinModule {
                 delete this.machineCoins[coin.type];
             }
         }
+    }
+
+    private validateCoins(coins: Coin[]): CoinResponse {
+        return {
+            result: ResultEnum.Error,
+            message: 'Not enough coin to purchase!',
+            data: this.returnUserCoins()
+        };
     }
 }
