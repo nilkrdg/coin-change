@@ -60,7 +60,7 @@ The buy method returns the least amount of change if it is not possible to retur
 | registerUserCoins 	| Accepts user coins in the machine.                             	| coins: Coin[]    	| CoinMessage 	|                	|                             	|
 | buy               	| Returns the correct change and removes coins from the machine. 	| amount: Number   	| CoinMessage 	| Returns change 	| Returns all user coins back 	|
 | checkCoinAmount   	| Returns the amount of the specified coin.                      	| coinType: Number 	| CoinMessage 	|                	|                             	|
-| printMachineCoins 	| Prints the contents of the machine.                            	|                  	|             	|                	|                             	|
+| printMachineCoins 	| Prints the contents of the machine.                            	|                  	| CoinMessage   |                	|                             	|
 
 <br><br>
 
