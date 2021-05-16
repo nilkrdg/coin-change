@@ -57,8 +57,8 @@ The buy method returns change using the least amount of coins. If there are not 
 | Method            	| Operation                                                      	| Parameter        	| Response    	| Response Data   |
 |-------------------	|----------------------------------------------------------------	|------------------	|-------------	|----------------	|
 | initialiseMachine 	| Initialises the machine with the given coins.                   | coins: Coin[]    	| CoinResponse 	|      None       |
-| reset             	| Resets all the API state.                                      	|       None        | CoinResponse 	|      None       | 
-| registerUserCoins 	| Accepts user coins in the machine.                             	| coins: Coin[]    	| CoinResponse 	|      None       |
+| reset             	| Resets the machine and all the API states.                      |       None        | CoinResponse 	|      None       | 
+| registerUserCoins 	| Accepts user coins into the machine.                            | coins: Coin[]    	| CoinResponse 	|      None       |
 | buy               	| Returns the correct change and removes coins from the machine. 	| amount: Number   	| CoinResponse 	| On Success: change <br> On Error: user coins |
 | checkCoinAmount   	| Returns the amount of the specified coin.                      	| coinType: Number 	| CoinResponse 	| On Success: Coin amount |
 | printMachineCoins 	| Prints the contents of the machine.                            	|         None      | CoinResponse   |      None       |
