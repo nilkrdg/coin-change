@@ -44,7 +44,7 @@ The Coin API solves the following problems
 1. Initialise the vending machine to a known state with given coins <br>
 This is solved by keeping coins in a HashMap in the Coin API. HashMap has complexity of O(1) for insertion and lookup because of this reason it is preferred.<br><br>
 2. Register coins that have been deposited by a user <br>
-When the user inserts coins into the machine, the user coins are saved in an array in memory. The reason to keep the user coins seperate is to return them back in case a request results in an error (e.g. not enough change, not enough user coins to buy etc.).<br><br>
+When the user inserts coins into the machine, the user coins are saved in an array in memory. The reason to keep the user coins seperate is to return them back in case a request results in an error (e.g. not enough coins for change, not enough user coins to buy etc.).<br><br>
 3. Return the correct change to a user as coins when an order is received <br>
 Although a classic HashMap doesn't keep the order, a JavaScript Object is used as a HashMap and the order is preserved in small to bigger coin types.
 To be able to find least number of coins for change, the hashmap is iterated over in reverse order. The iteration starts from the biggest coin or if the change amount is bigger than all coin types, it starts from the change amount. The time complexity for the getChange method is O(N) where N is the number of coin types.
