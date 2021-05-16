@@ -46,6 +46,14 @@ export class CoinModule {
         return { result: ResultEnum.Success, data: changes };
     }
 
+    public checkCoinAmount(coinType: number): CoinMessage {
+        const coinAmount = this.machineCoins[coinType];
+        if(!coinAmount){
+            return { result: ResultEnum.Error, message: `Coin type ${coinType} not found!` };
+        }
+        return { result: ResultEnum.Success, data:  coinAmount};
+    }
+
     public printMachineCoins(): void {
         console.log("Coins in the machine:");
         console.log(this.machineCoins);

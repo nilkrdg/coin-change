@@ -10,7 +10,7 @@ export interface CoinMap {
 export interface CoinMessage {
     result: ResultEnum;
     message?: string;
-    data?: Coin[];
+    data?: Coin[] | number;
 }
 
 export enum ResultEnum {
