@@ -1,6 +1,7 @@
 import { Coin } from "../coin/coin.interface";
-import { COMMAND_DICTIONARY } from "./command-dictionary";
-import { ArgumentDefinition, ParsedArgument, ParsedCommand } from "./parser.interface";
+import { COMMAND_DICTIONARY } from "../cli/command-dictionary";
+import { ParsedArgument, ParsedCommand } from "./parser.interface";
+import { ArgumentDefinition } from "../cli/cli.interface";
 
 export class Parser {
     static parse(inputString: string): ParsedCommand {
@@ -80,20 +81,6 @@ export class Parser {
         }
     }
 
-    static printCommand(commandName: string): void {
-        if (COMMAND_DICTIONARY[commandName]) {
-            console.log(COMMAND_DICTIONARY[commandName]);
-        } else {
-            console.error(`No such command ${commandName}!`);
-        }
-    }
-
-    static printAllCommands(): void {
-        Object.keys(COMMAND_DICTIONARY).map((commandName) => {
-            Parser.printCommand(commandName);
-        });
-    }
-
     static getCoins(command: ParsedCommand): Coin[] {
         const coinTypes = command.arguments.find((argument) => argument.name === 'ct' || argument.name === 'coin-types')?.value as number[];
         const coinAmounts = command.arguments.find((argument) => argument.name === 'ca' || argument.name === 'coin-amounts')?.value as number[];
@@ -106,5 +93,9 @@ export class Parser {
 
     static getAmount(command: ParsedCommand): number {
         return command.arguments.find((argument)=>argument.name === 'a' || argument.name === 'amount').value as number;
+    }
+
+    static getCoinType(command: ParsedCommand): number {
+        return command.arguments.find((argument)=>argument.name === 't' || argument.name === 'type').value as number;
     }
 }

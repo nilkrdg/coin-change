@@ -4,6 +4,11 @@ export class CoinModule {
     private machineCoins: CoinMap = {};
     private userCoins: Coin[] = [];
 
+    /**
+     * @brief Init command initialises the machine storage with the given amount.
+     * @param Coin coins - A list of coins.
+     * @returns CoinMessage - Message indicates the operation is successful.
+     */
     public initialiseMachine(coins: Coin[]): CoinMessage {
         this.insertCoins(coins);
         return {
@@ -11,6 +16,23 @@ export class CoinModule {
         };
     }
 
+    /**
+     * @brief Resets the API states.
+     * @returns CoinMessage - Message indicates the operation is successful.
+     */
+    public reset(): CoinMessage {
+        this.machineCoins = {};
+        this.userCoins = [];
+        return {
+            result: ResultEnum.Success
+        };
+    }
+
+    /**
+     * @brief Registers the user coins.
+     * @param Coin coins - A list of coins.
+     * @returns CoinMessage - Message indicates the operation is successful.
+     */
     public registerUserCoins(coins: Coin[]): CoinMessage {
         this.userCoins = this.insertCoins(coins);
         return {
@@ -18,6 +40,11 @@ export class CoinModule {
         };
     }
 
+    /**
+     * @brief Returns the correct change and reduces the coins from the machine.
+     * @param Number productPrice - The price of a product.
+     * @returns CoinMessage - Message indicates the operation is successful or not and the change as a list of coins.
+     */
     public buy(productPrice: number): CoinMessage {
         const userCoinSum = this.getCoinSum(this.userCoins);
         if (this.userCoins.length === 0 || userCoinSum < productPrice) {
@@ -46,6 +73,11 @@ export class CoinModule {
         return { result: ResultEnum.Success, data: changes };
     }
 
+    /**
+     * @brief Returns the amount of the specified coin.
+     * @param Number coinType - Coin type.
+     * @returns CoinMessage - Message indicates the operation is successful or not.
+     */
     public checkCoinAmount(coinType: number): CoinMessage {
         const coinAmount = this.machineCoins[coinType];
         if(!coinAmount){
@@ -54,9 +86,16 @@ export class CoinModule {
         return { result: ResultEnum.Success, data:  coinAmount};
     }
 
-    public printMachineCoins(): void {
+    /**
+     * @brief Prints the contents of the machine.
+     * @returns CoinMessage - Message indicates the operation is successful.
+     */
+    public printMachineCoins(): CoinMessage {
         console.log("Coins in the machine:");
         console.log(this.machineCoins);
+        return {
+            result: ResultEnum.Success
+        };
     }
 
     private getChange(amount: number): Coin[] {

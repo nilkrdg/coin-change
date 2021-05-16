@@ -1,14 +1,16 @@
-
-
 import { CoinModule } from "./coin.module";
 import { ResultEnum } from "./coin.interface";
 
-describe('Coin API', () => {
-    it('initializes machine correctly', () => {
-        const coinModule = new CoinModule();
+const coinModule = new CoinModule();
+describe('Coin API Success Cases', () => {
+    beforeAll(() => {
         const machineCoins = [{type: 1, amount: 3}, {type: 2, amount: 2}, {type: 5, amount: 1}];
-        const coinInitMessage = coinModule.initialiseMachine(machineCoins);
-        expect(coinInitMessage.result).toBe(ResultEnum.Success);
+        coinModule.initialiseMachine(machineCoins);
+      });
+      afterAll(() => {
+        coinModule.reset();
+      });
+    it('checks if the machine is initialised correctly', () => {
         const checkCoinMessage1 = coinModule.checkCoinAmount(1);
         const checkCoinMessage2 = coinModule.checkCoinAmount(2);
         const checkCoinMessage5 = coinModule.checkCoinAmount(5);
@@ -18,20 +20,14 @@ describe('Coin API', () => {
     });
 
     it('registers user coins correctly', () => {
-        const coinModule = new CoinModule();
-        const machineCoins = [{type: 1, amount: 3}, {type: 2, amount: 1}];
-        coinModule.initialiseMachine(machineCoins);
         const userCoins = [{type: 5, amount: 2}];
         const coinInsertMessage = coinModule.registerUserCoins(userCoins);
         expect(coinInsertMessage.result).toBe(ResultEnum.Success);
         const checkCoinMessage5 = coinModule.checkCoinAmount(5);
-        expect(checkCoinMessage5.data).toBe(2);
+        expect(checkCoinMessage5.data).toBe(3);
     });
 
     it('should return correct change', () => {
-        const coinModule = new CoinModule();
-        const machineCoins = [{type: 1, amount: 3}, {type: 2, amount: 2}, {type: 5, amount: 1}];
-        coinModule.initialiseMachine(machineCoins);
         const userCoins = [{type: 5, amount: 2}];
         coinModule.registerUserCoins(userCoins);
         const changeMessage = coinModule.buy(7);
@@ -39,10 +35,23 @@ describe('Coin API', () => {
         expect(changeMessage.data).toEqual([ { type: 2, amount: 1 }, { type: 1, amount: 1 } ]);
     });
 
-    it('should return Not enough coins!', () => {
-        const coinModule = new CoinModule();
+    it('should reset API state', () => {
+        coinModule.reset();
+        const checkCoinMessage = coinModule.checkCoinAmount(5);
+        expect(checkCoinMessage.result).toBe(ResultEnum.Error);
+        expect(checkCoinMessage.message).toBe('Coin type 5 not found!');
+    });
+});
+
+describe('Coin API Error Cases', () => {
+    beforeAll(() => {
         const machineCoins = [{type: 1, amount: 1}, {type: 5, amount: 4}];
         coinModule.initialiseMachine(machineCoins);
+      });
+      afterAll(() => {
+        coinModule.reset();
+      });
+    it('should return Not enough coins!', () => {
         const userCoins = [{type: 5, amount: 2}];
         coinModule.registerUserCoins(userCoins);
         const changeMessage = coinModule.buy(7);
@@ -51,9 +60,6 @@ describe('Coin API', () => {
     });
 
     it('should return Not enough coin to purchase!', () => {
-        const coinModule = new CoinModule();
-        const machineCoins = [{type: 1, amount: 1}, {type: 5, amount: 4}];
-        coinModule.initialiseMachine(machineCoins);
         const userCoins = [{type: 5, amount: 1}];
         coinModule.registerUserCoins(userCoins);
         const changeMessage = coinModule.buy(7);
@@ -62,9 +68,6 @@ describe('Coin API', () => {
     });
 
     it('should return coin type not found!', () => {
-        const coinModule = new CoinModule();
-        const machineCoins = [{type: 1, amount: 1}, {type: 5, amount: 4}];
-        coinModule.initialiseMachine(machineCoins);
         const checkCoinMessage = coinModule.checkCoinAmount(2);
         expect(checkCoinMessage.result).toBe(ResultEnum.Error);
         expect(checkCoinMessage.message).toBe(`Coin type 2 not found!`);

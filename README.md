@@ -47,7 +47,7 @@ The correct change amount is searched by a loop. The time complexity for whole o
 
 | Method            	| Operation                                                     	| Parameter Name 	| Parameter Type                         	| Response Type                          	| Success        	| Error                       	|
 |-------------------	|---------------------------------------------------------------	|----------------	|----------------------------------------	|----------------------------------------	|----------------	|-----------------------------	|
-| initialiseMachine 	| Initializes the machine with given coins                      	| coins          	| `[{ type: Number,amount: Number }]` 	| `[{ type: Number,amount: Number }]` 	| -              	| -                           	|
+| initialiseMachine 	| Initialises the machine with given coins                      	| coins          	| `[{ type: Number,amount: Number }]` 	| `[{ type: Number,amount: Number }]` 	| -              	| -                           	|
 | registerUserCoins 	| Accepts user coins in the machine                             	| coins          	| `[{ type: Number,amount: Number }]` 	| `[{ type: Number,amount: Number }]` 	| -              	| -                           	|
 | buy               	| Returns the correct change and removes coins from the machine 	| amount         	| `Number`                              | `[{ type: Number,amount: Number }]` 	| Returns change 	| Returns all user coins back 	|
 | printMachineCoins 	| Prints the contents of the machine                            	| -              	| -                                     | -                                     | -              	| -                           	|
@@ -123,8 +123,8 @@ buy -a 10
 
 | Command 	| Arguments                                                 	| Arguments short form                 	| Operation                                                                                       	|
 |---------	|-----------------------------------------------------------	|--------------------------------------	|-------------------------------------------------------------------------------------------------	|
-| init    	| --coin-types numberArray <br> --coin-amounts numberArray  	| -ct numberArray <br> -ca numberArray 	| Initializes the machine with given coins.                                                       	|
+| init    	| --coin-types numberArray <br> --coin-amounts numberArray  	| -ct numberArray <br> -ca numberArray 	| Initialises the machine with given coins.                                                       	|
 | insert  	| --coin-types numberArray <br> --coin-amounts numberArray  	| -ct numberArray <br> -ca numberArray 	| Accepts user coins in the machine.                                                              	|
 | buy     	| --amount number                                      	| -a  number                       	| Returns the correct change and removes coins from the machine.                                  	|
-| help/h  	|                                                           	|                                      	| Prints the list of commands. If command name argument is present print details of that command. 	|
-| quit/q  	|                                                           	|                                      	| Terminates the Coin CLI.                                                                        	|
+| help  	|                                                           	|                                      	| Prints the list of commands. If command name argument is present print details of that command. 	|
+| quit  	|                                                           	|                                      	| Terminates the Coin CLI.                                                                        	|
