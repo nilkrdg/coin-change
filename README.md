@@ -92,7 +92,7 @@ init --coin-types 1,2,5 --coin-amounts 2,4,2
 ```
 To initialise the machine with short form,
 ```bash
-init -ct 1,2,5 --ca 2,4,2
+init -ct 1,2,5 -ca 2,4,2
 ```
 
 To insert coins into the machine,
@@ -101,7 +101,7 @@ insert --coin-types 1,2,5 --coin-amounts 2,4,2
 ```
 To insert coins into the machine with short form,
 ```bash
-insert -ct 1,2,5 --ca 2,4,2
+insert -ct 1,2,5 -ca 2,4,2
 ```
 ---
 **NOTE**
