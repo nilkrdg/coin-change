@@ -85,7 +85,7 @@ The response type Coin is an object that has the following properties: <br>
 
 ### Requirements
 
-The project works on Node version 12.x and greater. Before installation make sure to have Node.js (>=12.0.0) installed.
+The project works on Node version 12.x and greater. Before installation make sure to have [Node.js](https://nodejs.org/en/download/) (>=12.0.0) installed.
 
 ### Installation
 
