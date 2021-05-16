@@ -48,7 +48,8 @@ When the user inserts coins into the machine, the user coins are saved in an arr
 3. Return the correct change to a user as coins when an order is received <br>
 Although a classic HashMap doesn't keep the order, a JavaScript Object is used as a HashMap and the order is preserved in small to bigger coin types.
 To be able to find least number of coins for change, the hashmap is iterated over in reverse order. The iteration starts from the biggest coin or if the change amount is bigger than all coin types, it starts from the change amount. The time complexity for the getChange method is O(N) where N is the number of coin types.
-The buy method returns change with the least amount of coins. If there are not enough coins in the machine or the user does not insert enough coins to buy, the method returns an error message alongside all the coins the user inserted.
+<br><br>
+The buy method returns change using the least amount of coins. If there are not enough coins in the machine or the user does not insert enough coins to buy, the method returns an error message alongside all the coins the user inserted.
 <br><br>
 
 ### Coin API Methods 
