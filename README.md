@@ -178,7 +178,7 @@ Coins in the machine:
 
 | Command 	| Arguments                                          	| Arguments short form           	| Operation                                                                                       	|
 |---------	|----------------------------------------------------	|--------------------------------	|-------------------------------------------------------------------------------------------------	|
-| init    	| --coin-types Number[] <br> --coin-amounts Number[] 	| -ct Number[] <br> -ca Number[] 	| Initializes the machine with given coins.                                                       	|
+| init    	| --coin-types Number[] <br> --coin-amounts Number[] 	| -ct Number[] <br> -ca Number[] 	| Initialises the machine with given coins.                                                       	|
 | insert  	| --coin-types Number[] <br> --coin-amounts Number[] 	| -ct Number[] <br> -ca Number[] 	| Accepts user coins in the machine.                                                              	|
 | buy     	| --amount Number                               	| -a Number                 	| Returns the correct change and removes coins from the machine.                                  	|
 | coin    	| --type Number                                 	| -t Number                 	| Returns the amount of the specified coin.                                                       	|
