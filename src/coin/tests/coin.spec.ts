@@ -98,6 +98,13 @@ describe('Coin API Error Cases', () => {
         expect(checkCoinMessage.result).toBe(ResultEnum.Error);
         expect(checkCoinMessage.message).toBe(`Coin type 2 not found!`);
     });
+
+    it('should return invalid coin for !', () => {
+        const userCoins = [{type: -4, amount: 3}];
+        const registerUserCoinMessage = coinModule.registerUserCoins(userCoins);
+        expect(registerUserCoinMessage.result).toBe(ResultEnum.Error);
+        expect(registerUserCoinMessage.message).toBe(`Invalid coin!`);
+    });
 });
 
 
@@ -121,3 +128,4 @@ describe('Coin API Stress Cases', () => {
         expect(changeMessage.data).toEqual([ { type: 3, amount: 1 }]);
     });
 });
+
