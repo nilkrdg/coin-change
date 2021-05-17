@@ -205,5 +205,6 @@ npm test
 
 ## Further Work
 
+* Yhe number of coin types and amounts must be validated by CLI Module.
 * There is need to add tests for CLI module.
 * More cases should be covered by Coin and Parser Module tests.
