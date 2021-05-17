@@ -50,7 +50,7 @@ export class Parser {
 
             return parsedCommand;
         } catch (error) {
-            console.error(error.message);
+            console.warn(error.message);
             return null;
         }
 

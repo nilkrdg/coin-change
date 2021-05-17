@@ -201,5 +201,5 @@ npm test
 
 ## Further Work
 
-* There is need to add tests for CLI and Parser modules.
-* More cases should be covered by Coin Module tests.
+* There is need to add tests for CLI module.
+* More cases should be covered by Coin and Parser Module tests.
