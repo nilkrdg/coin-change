@@ -125,6 +125,14 @@ Coins in the machine:
 ```
 <br>
 
+---
+**NOTE**
+Please be aware that the number of coin types directly corresponds to the number of coin amounts entered and must be equal!
+
+---
+
+<br>
+
 To initialise the machine with short form:
 ```bash
 init -ct 1,2,5 -ca 2,4,2
@@ -148,11 +156,7 @@ To insert coins into the machine with short form:
 ```bash
 insert -ct 1,2,5 -ca 2,4,2
 ```
----
-**NOTE**
-Please be aware of the number of coin types and the number of coin amounts must be equal!
 
----
 <br>
 
 
