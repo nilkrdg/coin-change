@@ -127,7 +127,7 @@ Coins in the machine:
 
 ---
 **NOTE**
-Please be aware that the number of coin types directly corresponds to the number of coin amounts entered and must be equal!
+Please be aware that the number of coin types directly corresponds to the number of coin amounts entered and must be equal.
 
 ---
 
