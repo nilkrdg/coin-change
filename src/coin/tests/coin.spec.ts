@@ -14,10 +14,17 @@ describe('Coin API Success Cases', () => {
         const checkCoinMessage1 = coinModule.checkCoinAmount(1);
         const checkCoinMessage2 = coinModule.checkCoinAmount(2);
         const checkCoinMessage5 = coinModule.checkCoinAmount(5);
-        console.log(checkCoinMessage1)
         expect(checkCoinMessage1.data).toBe(3);
         expect(checkCoinMessage2.data).toBe(2);
         expect(checkCoinMessage5.data).toBe(1);
+    });
+
+
+    it('should init override coins in the machine', () => {
+        const machineCoins = [{type: 5, amount: 1}];
+        coinModule.initialiseMachine(machineCoins);
+        let checkCoinMessage = coinModule.checkCoinAmount(5);
+        expect(checkCoinMessage.data).toBe(1);
     });
 
     it('registers user coins correctly', () => {
@@ -36,6 +43,16 @@ describe('Coin API Success Cases', () => {
         expect(changeMessage.data).toEqual([ { type: 2, amount: 1 }, { type: 1, amount: 1 } ]);
     });
 
+    it('should allow multiple insert', () => {
+        const userCoins = [{type: 10, amount: 2}];
+        coinModule.registerUserCoins(userCoins);
+        let checkCoinMessage = coinModule.checkCoinAmount(10);
+        expect(checkCoinMessage.data).toBe(2);
+        coinModule.registerUserCoins(userCoins);
+        checkCoinMessage = coinModule.checkCoinAmount(10);
+        expect(checkCoinMessage.data).toBe(4);
+    });
+
     it('should reset API state', () => {
         coinModule.reset();
         const checkCoinMessage = coinModule.checkCoinAmount(5);
@@ -52,12 +69,12 @@ describe('Coin API Error Cases', () => {
       afterEach(() => {
         coinModule.reset();
       });
-    it('should return Not enough coins!', () => {
+    it('should return Not enough coins for change!!', () => {
         const userCoins = [{type: 5, amount: 2}];
         coinModule.registerUserCoins(userCoins);
         const changeMessage = coinModule.buy(7);
         expect(changeMessage.result).toBe(ResultEnum.Error);
-        expect(changeMessage.message).toBe('Not enough coins!');
+        expect(changeMessage.message).toBe('Not enough coins for change!');
     });
 
     it('should return Not enough coin to purchase!', () => {
