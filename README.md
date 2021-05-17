@@ -185,7 +185,7 @@ Coins in the machine:
 | reset   	|                                                    	|                                	| Resets all the API state.                                                                       	|
 | print   	|                                                    	|                                	| Prints all the coins in the machine.                                                            	|
 | quit    	|                                                    	|                                	| Terminates the Coin CLI.                                                                        	|
-| help    	|                                                    	|                                	| Prints the list of commands. If command name argument is present, it prints the details of the command. 	|
+| help    	|                                                    	|                                	| Prints the list of commands. If command name argument is present, prints the details of the command. 	|
 
 
 <br><br>
